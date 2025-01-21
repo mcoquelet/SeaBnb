@@ -1,0 +1,11 @@
+<h1>Available Islands</h1>
+<ul>
+  <% @islands.each do |island| %>
+    <li>
+      <h2><%= island.name %></h2>
+      <p>Price: $<%= island.price %> per day</p>
+      <p>Location: <%= island.location %></p>
+      <p>Rating: <%= island.average_rating %>/5</p>
+    </li>
+  <% end %>
+</ul>
