@@ -8,7 +8,53 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+
+#-------------- Clean Database ----------------
+#
 Island.destroy_all
+User.destroy_all
+
+# ------------- Users --------------------
+
+User.create(
+ first_name: 'Alice',
+ last_name: 'Wonder',
+ password: 'mypassword',
+ bio: 'Loves exploring the realms of creativity.',
+ email: 'alice.wonder@example.com'
+)
+User.create(
+ first_name: 'Bob',
+ last_name: 'Builder',
+ password: 'mypassword',
+ bio: 'An expert in constructing new ideas.',
+ email: 'bob.builder@example.com'
+)
+User.create(
+ first_name: 'Clara',
+ last_name: 'Sky',
+ password: 'mypassword',
+ bio: 'Finds inspiration in the clouds above.',
+ email: 'clara.sky@example.com'
+)
+User.create(
+ first_name: 'Dylan',
+ last_name: 'Stone',
+ password: 'mypassword',
+ bio: 'Grounded and passionate about innovation.',
+ email: 'dylan.stone@example.com'
+)
+User.create(
+ first_name: 'Ella',
+ last_name: 'Bloom',
+ password: 'mypassword',
+ bio: 'A budding visionary with a green thumb.',
+ email: 'ella.bloom@example.com'
+)
+
+puts "Created #{User.count} users."
+
+# ------------- Islands --------------------
 
 Island.create(
   name: "Paradise Island",
@@ -19,7 +65,7 @@ Island.create(
   price: 5000,
   capacity: 20,
   average_rating: 4.8,
-  user_id: 1
+  user_id: User.first.id
 )
 
 Island.create(
@@ -31,7 +77,7 @@ Island.create(
   price: 7000,
   capacity: 15,
   average_rating: 4.9,
-  user_id: 1
+  user_id: User.first.id
 )
 
 Island.create(
@@ -43,7 +89,7 @@ Island.create(
   price: 4500,
   capacity: 25,
   average_rating: 3.8,
-  user_id: 1
+  user_id: User.first.id
 )
 
 Island.create(
@@ -55,7 +101,7 @@ Island.create(
   price: 6000,
   capacity: 18,
   average_rating: 4.7,
-  user_id: 1
+  user_id: User.last.id
 )
 
 Island.create(
@@ -67,5 +113,7 @@ Island.create(
   price: 8000,
   capacity: 100,
   average_rating: 5,
-  user_id: 1
+  user_id: User.last.id
 )
+
+puts "Created #{Island.count} islands."
