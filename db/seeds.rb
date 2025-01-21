@@ -7,3 +7,65 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+Island.destroy_all
+
+Island.create(
+  name: "Paradise Island",
+  description: "A beautiful tropical island with white sandy beaches and crystal-clear waters.",
+  location: "Caribbean Sea",
+  longitude: "-75.1234",
+  latitute: "18.4567",
+  price: 5000,
+  capacity: 20,
+  average_rating: 4.8,
+  user_id: 1
+)
+
+Island.create(
+  name: "Emerald Haven",
+  description: "An exotic getaway surrounded by lush greenery and vibrant coral reefs.",
+  location: "Pacific Ocean",
+  longitude: "123.4567",
+  latitute: "10.2345",
+  price: 7000,
+  capacity: 15,
+  average_rating: 4.9,
+  user_id: 1
+)
+
+Island.create(
+  name: "Golden Sands",
+  description: "A serene island offering breathtaking sunsets and golden sandy shores.",
+  location: "Indian Ocean",
+  longitude: "80.5678",
+  latitute: "-5.4321",
+  price: 4500,
+  capacity: 25,
+  average_rating: 3.8,
+  user_id: 1
+)
+
+Island.create(
+  name: "Azure Bay",
+  description: "A tranquil island surrounded by turquoise waters, perfect for a peaceful retreat.",
+  location: "Mediterranean Sea",
+  longitude: "12.3456",
+  latitute: "37.1234",
+  price: 6000,
+  capacity: 18,
+  average_rating: 4.7,
+  user_id: 1
+)
+
+Island.create(
+  name: "Crystal Cove",
+  description: "An idyllic island with hidden coves and pristine beaches, ideal for adventure seekers.",
+  location: "South Pacific",
+  longitude: "-150.7890",
+  latitute: "-17.8901",
+  price: 8000,
+  capacity: 100,
+  average_rating: 5,
+  user_id: 1
+)
