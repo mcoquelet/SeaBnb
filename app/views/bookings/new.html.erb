@@ -1,0 +1,12 @@
+<div class="container">
+  <%= simple_form_for [@island, @booking] do |f| %>
+  <%= f.input :start_date, required: true,
+                            as: :string,
+                            input_html: { data: { controller: "datepicker" } } %>
+  <%= f.input :end_date, required: true,
+                            as: :string,
+                            input_html: { data: { controller: "datepicker" } } %>
+  <%= f.input :guest_number, required: true %>
+  <%= f.button :submit %>
+<% end %>
+</div>
