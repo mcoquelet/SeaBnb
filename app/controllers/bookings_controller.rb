@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :set_island
+  before_action :set_island, only: [:new, :create]
 
   def new
     @booking = Booking.new
@@ -16,10 +16,14 @@ class BookingsController < ApplicationController
     end
   end
 
+  def index
+    @bookings = Booking.where(user: current_user)
+  end
+
   private
 
   def set_island
-    @island = Island.find(params[:id])
+    @island = Island.find(params[:island_id])
   end
 
   def booking_params
