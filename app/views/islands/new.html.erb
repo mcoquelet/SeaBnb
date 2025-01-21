@@ -1,0 +1,12 @@
+<h1>Create a New Island</h1>
+
+<%= simple_form_for(@island) do |f| %>
+  <%= f.input :name %>
+  <%= f.input :description %>
+  <%= f.input :price %>
+  <%= f.input :capacity %>
+  <%= f.input :location %>
+  <%= f.input :longitude %>
+  <%= f.input :latitute %>
+  <%= f.submit %>
+<% end %>
