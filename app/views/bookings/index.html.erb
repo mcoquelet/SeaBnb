@@ -1,0 +1,8 @@
+<div class="container">
+  <h1>My Bookings</h1>
+  <% @bookings.each do |booking| %>
+    <h2><%= booking.island.name %> </h2>
+    <p><%= booking.start_date %> - <%= booking.end_date %> </p>
+    <p><%= booking.guest_number %></p>
+  <% end %>
+</div>
