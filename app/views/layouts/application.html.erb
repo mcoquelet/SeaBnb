@@ -1,18 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html class="h-100">
   <head>
     <title>SeaBnb</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <%= favicon_link_tag asset_path('logo_island.png') %>
+
+
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+  <body class="d-flex flex-column h-100">
+    <%= render "shared/navbar" %>
+    <%= render "shared/flashes" %>
+    <main class="flex-shrink-0">
+      <%= yield %>
+    </main>
+    <%= render "shared/footer" %>
   </body>
 </html>
