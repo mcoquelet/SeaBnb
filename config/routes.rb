@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   root to: "islands#index"
   
   # Route to access islands and create bookings
-  resources :islands, only: [:new, :show, :create] do
+  resources :islands, only: [:new, :show, :create, :destroy] do
     resources :bookings, only: [:new, :create]
   end
   
