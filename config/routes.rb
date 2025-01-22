@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   # root "posts#index"
   root to: "islands#index"
 
-  resources :islands, only: [:new, :show, :create] do
+  resources :islands, only: [:new, :show, :create, :destroy] do
     resources :bookings, only: [:new, :create]
   end
   # Route to access favorites

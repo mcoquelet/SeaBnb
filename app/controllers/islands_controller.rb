@@ -14,11 +14,17 @@ class IslandsController < ApplicationController
     @my_islands = current_user.islands
   end
 
+  def destroy
+    @island = current_user.islands.find(params[:id])
+    @island.destroy
+    redirect_to new_island_path, notice: "Island successfully deleted."
+  end
+
   def create
     @island = Island.new(island_params)
     @island.user = current_user
     if @island.save!
-      redirect_to island_path(@island), notice: "Island was successfully created."
+      flash[:notice] = "Island was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -27,6 +33,6 @@ class IslandsController < ApplicationController
   private
 
   def island_params
-    params.require(:island).permit(:name, :description, :location, :longitude, :latitute, :price, :capacity)
+    params.require(:island).permit(:name, :description, :location, :price, :capacity)
   end
 end
