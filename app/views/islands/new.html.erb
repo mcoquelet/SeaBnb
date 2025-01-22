@@ -1,4 +1,15 @@
-<h1>Create a New Island</h1>
+<%# <h1>My Islands</h1>
+<%# <% if @my_islands.any? %>
+  <ul>
+    <%# <%= @my_islands.each do |island| %>
+      <%# <%= island.name %> %> %>
+  </ul>
+<%# <% else %>
+  <%# <p><%= "You have not created any islands yet." %></p> %> %>
+<% end %> %> %>
+
+
+<h2>Create a New Island</h2>
 
 <%= simple_form_for(@island) do |f| %>
   <%= f.input :name %>
