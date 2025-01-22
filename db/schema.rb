@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_01_22_073400) do
+ActiveRecord::Schema[7.1].define(version: 2025_01_22_104114) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,8 +41,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_22_073400) do
     t.text "description"
     t.float "average_rating"
     t.string "location"
-    t.string "latitute"
-    t.string "longitude"
+    t.float "latitude"
+    t.float "longitude"
     t.float "price"
     t.integer "capacity"
     t.datetime "created_at", null: false
