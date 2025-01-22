@@ -1,5 +1,6 @@
 class BookingsController < ApplicationController
   before_action :set_island, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create]
 
   def new
     @booking = Booking.new
@@ -10,7 +11,7 @@ class BookingsController < ApplicationController
     @booking.island = @island
     @booking.user = current_user
     if @booking.save
-      redirect_to root_path
+      redirect_to bookings_path, notice: "Booking was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
