@@ -1,0 +1,37 @@
+/* Make the geocoder take the full width */
+.mapboxgl-ctrl-geocoder {
+  max-width: none;
+  width: 100%;
+  border: 1px solid lightgrey;
+  box-shadow: none;
+  background-color: transparent;
+}
+
+/* Remove the search icon */
+.mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--icon {
+  display: none;
+}
+
+/* Remove the placeholder text */
+.mapboxgl-ctrl-geocoder input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  padding: 8px;
+}
+
+.mapboxgl-ctrl-geocoder input::placeholder {
+  color: transparent; /* Hides the placeholder text */
+}
+
+/* Adjust the font size and padding */
+.mapboxgl-ctrl-geocoder input {
+  font-size: 16px;
+  padding: 10px;
+}
+
+/* Hide the clear button on normal and hover states */
+.mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--button {
+  display: none !important;
+}
