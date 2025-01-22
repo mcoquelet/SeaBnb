@@ -6,6 +6,7 @@
       <li>
         <p><%= island.name %></p>
         <%= link_to "View island details", island_path(island), class: "btn btn-primary", style: "margin-bottom: 16px"%>
+        <%= button_to "Unfavorite", unfavorite_island_path(island), method: :delete, class: "btn btn-danger" %>
       </li>
     <% end %>
   </ul>

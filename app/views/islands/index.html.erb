@@ -7,14 +7,12 @@
       <p>Location: <%= island.location %></p>
       <p>Rating: <%= island.average_rating %>/5</p>
 
-      <% if current_user%>
-        <% if current_user.favorite_islands.include?(island) %>
+      <% if current_user %>
+        <% if current_user.favorites.exists?(island: island) %>
           <%= button_to "Unfavorite", unfavorite_island_path(island), method: :delete, class: "btn btn-danger", style: "margin-bottom: 8px"%>
         <% else %>
-          <%= button_to "Favorite", favorite_island_path(island), method: :post, class: "btn btn-primary", style: "margin-bottom: 8px"%>
+          <%= button_to "Favorite", favorite_island_path(island), method: :post, class: "btn btn-success", style: "margin-bottom: 8px"%>
         <% end %>
-      <% else %>
-        <p> "Log in to favorite this island". </p>
       <% end %>
       <%= link_to "View Details", island_path(island), class: "btn btn-primary", style: "margin-bottom: 16px"%>
     </li>
