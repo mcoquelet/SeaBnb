@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_01_22_073400) do
+ActiveRecord::Schema[7.1].define(version: 2025_01_22_104114) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,14 +40,23 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_22_073400) do
     t.text "description"
     t.float "average_rating"
     t.string "location"
-    t.string "latitute"
-    t.string "longitude"
+    t.float "latitude"
+    t.float "longitude"
     t.float "price"
     t.integer "capacity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_islands_on_user_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "rating"
+    t.text "comment"
+    t.bigint "booking_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["booking_id"], name: "index_reviews_on_booking_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -70,4 +79,5 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_22_073400) do
   add_foreign_key "favorites", "islands"
   add_foreign_key "favorites", "users"
   add_foreign_key "islands", "users"
+  add_foreign_key "reviews", "bookings"
 end
