@@ -1,6 +1,17 @@
 <h1>Island Details</h1>
 
 <h3><%= @island.name %></h3>
+<% if @island.images.attached? %>
+  <div class="island-images">
+    <% @island.images.each do |image| %>
+      <%= image_tag image, class: "island-image", style: "max-width: 200px; margin: 10px;" %>
+    <% end %>
+  </div>
+<% else %>
+  <p>No images available for this island</p>
+<% end %>
+
+
 <p>Description: <%= @island.description %></p>
 <p>Price: $<%= @island.price %> per day</p>
 <p>Location: <%= @island.location %></p>

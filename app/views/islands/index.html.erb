@@ -6,6 +6,14 @@
       <p>Price: $<%= island.price %> per day</p>
       <p>Location: <%= island.location %></p>
       <p>Rating: <%= island.average_rating %>/5</p>
+      <% if island.images.attached? %>
+        <div class="island-images">
+          <% island.images.each do |image| %>
+        <%= image_tag image, class: "island-image", style: "max-width: 200px; margin: 10px;" %>
+          <% end %>
+        </div>
+      <% end %>
+
 
       <% if current_user %>
         <% if current_user.favorites.exists?(island: island) %>
