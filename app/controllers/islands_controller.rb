@@ -1,4 +1,6 @@
 class IslandsController < ApplicationController
+  before_action :authenticate_user!, only: [:favorite, :unfavorite]
+
   def index
     @islands = Island.all
   end
@@ -9,6 +11,23 @@ class IslandsController < ApplicationController
 
   def new
     @island = Island.new
+    @my_islands = current_user.islands
+  end
+
+  def favorite
+    @island = Island.find(params[:id])
+    current_user.favorite_islands << @island unless current_user.favorite_islands.include?(@island)
+    redirect_to root_path, notice: "#{@island.name} has been added to your favorites."
+  end
+
+  def unfavorite
+    @island = Island.find(params[:id])
+    current_user.favorite_islands.delete(@island)
+    redirect_to root_path, notice: "#{@island.name} has been removed from your favorites."
+  end
+
+  def favorites
+    @favorite_islands = current_user.favorite_islands
   end
 
   def create
@@ -26,5 +45,4 @@ class IslandsController < ApplicationController
   def island_params
     params.require(:island).permit(:name, :description, :location, :longitude, :latitute, :price, :capacity)
   end
-
 end

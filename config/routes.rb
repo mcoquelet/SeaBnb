@@ -12,5 +12,10 @@ Rails.application.routes.draw do
   resources :islands, only: [:new, :show, :create] do
     resources :bookings, only: [:new, :create]
   end
+  # Route to access favorites
+  get '/favorites', to: 'islands#favorites', as: 'favorites'
+  # Custom routes for favorite and unfavorite actions
+  post '/islands/:id/favorite', to: 'islands#favorite', as: 'favorite_island'
+  delete '/islands/:id/unfavorite', to: 'islands#unfavorite', as: 'unfavorite_island'
   resources :bookings, only: [:index]
 end
