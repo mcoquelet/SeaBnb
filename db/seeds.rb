@@ -52,7 +52,7 @@ User.create(
  email: 'ella.bloom@example.com'
 )
 
-puts "Created #{User.count} users."
+puts "Created #{User.count} users 👥"
 
 # ------------- Islands --------------------
 
@@ -116,4 +116,35 @@ Island.create(
   user_id: User.last.id
 )
 
-puts "Created #{Island.count} islands."
+puts "Created #{Island.count} islands 🏝"
+
+# ------------- Bookings and reviews --------------------
+
+20.times do |i|
+  booking = Booking.create(
+    start_date: Date.today - i*5,
+    end_date: Date.today - i*5 + 6,
+    island_id: Island.all.sample.id,
+    user_id: User.all.sample.id,
+    guest_number: [50, 100, 200, 500, 1000].sample
+  )
+
+  booking.reviews.create(
+    created_at: booking.end_date + 2,
+    rating: [1, 2, 3, 4, 5].sample,
+    comment: ["A fantastic experience!",
+              "A wonderful getaway!",
+              "An unforgettable adventure!",
+              "A peaceful retreat.",
+              "A tropical paradise.",
+              "An island that offers something for everyone.",
+              "A beautiful island with so much to offer.",
+              "A hidden gem with so much to explore."].sample
+  )
+end
+
+puts "Created #{Booking.count} bookings 📅"
+
+puts "Created #{Review.count} reviews 🌟"
+
+puts "Seeds complete! 🌱"
