@@ -12,6 +12,8 @@ class ReviewsController < ApplicationController
     @review.booking = @booking
     if @review.save
       redirect_to bookings_path(@booking)
+      flash[:notice] = "Review successfully created"
+      @booking.island.refresh_average_rating
     else
       render :new, status: :unprocessable_entity
     end

@@ -1,0 +1,10 @@
+<div class="review bg-light p-2 my-2 shadow-sm rounded">
+  <p class="fst-italic"><strong><%= review.booking.user.first_name %></strong> - <%= time_ago_in_words(review.created_at) %> ago</p>
+  <% review.rating.times do %>
+    <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+  <% end %>
+  <% (5 - review.rating).times do %>
+    <i class="fa-regular fa-star" style="color: #FFD43B;"></i>
+  <% end %>
+  <p ><%= review.comment %></p>
+</div>
