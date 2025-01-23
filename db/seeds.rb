@@ -9,6 +9,9 @@
 #   end
 
 
+# allows application to access files from URLs
+require 'open-uri'
+
 #-------------- Clean Database ----------------
 #
 Island.destroy_all
@@ -52,7 +55,7 @@ User.create(
  email: 'ella.bloom@example.com'
 )
 
-puts "Created #{User.count} users."
+puts "Created #{User.count} users 👥"
 
 # ------------- Islands --------------------
 
@@ -116,4 +119,51 @@ Island.create(
   user_id: User.last.id
 )
 
-puts "Created #{Island.count} islands."
+puts "Created #{Island.count} islands 🏝"
+
+# ------------- Images --------------------
+photos = [
+  "https://media.cntraveler.com/photos/6480f7ef80f906257d9d0eac/16:9/w_2560%2Cc_limit/Best%2520snorkeling%2520in%2520the%2520world_%2520San%2520Crist%25C3%25B3bal%2C%2520Gal%25C3%25A1pagos%2520GettyImages-1482774223.jpg",
+  "https://media.cntraveler.com/photos/6480f7ef80f906257d9d0eac/16:9/w_2560%2Cc_limit/Best%2520snorkeling%2520in%2520the%2520world_%2520San%2520Crist%25C3%25B3bal%2C%2520Gal%25C3%25A1pagos%2520GettyImages-1482774223.jpg",
+  "https://media.cntraveler.com/photos/6480f7ef80f906257d9d0eac/16:9/w_2560%2Cc_limit/Best%2520snorkeling%2520in%2520the%2520world_%2520San%2520Crist%25C3%25B3bal%2C%2520Gal%25C3%25A1pagos%2520GettyImages-1482774223.jpg",
+  "https://media.cntraveler.com/photos/6480f7ef80f906257d9d0eac/16:9/w_2560%2Cc_limit/Best%2520snorkeling%2520in%2520the%2520world_%2520San%2520Crist%25C3%25B3bal%2C%2520Gal%25C3%25A1pagos%2520GettyImages-1482774223.jpg",
+  "https://media.cntraveler.com/photos/6480f7ef80f906257d9d0eac/16:9/w_2560%2Cc_limit/Best%2520snorkeling%2520in%2520the%2520world_%2520San%2520Crist%25C3%25B3bal%2C%2520Gal%25C3%25A1pagos%2520GettyImages-1482774223.jpg"
+]
+
+Island.all.each_with_index do |island, index|
+  file = URI.parse(photos[index % photos.length]).open # Open the URL for the image
+  island.photo.attach(io: file, filename: "island_#{index + 1}.jpg", content_type: "image/jpeg")
+end
+
+puts "Attached images to islands 🖼"
+
+# ------------- Bookings and reviews --------------------
+
+20.times do |i|
+  booking = Booking.create(
+    start_date: Date.today - i*5,
+    end_date: Date.today - i*5 + 6,
+    island_id: Island.all.sample.id,
+    user_id: User.all.sample.id,
+    guest_number: [50, 100, 200, 500, 1000].sample
+  )
+
+  booking.reviews.create(
+    created_at: booking.end_date + 2,
+    rating: [1, 2, 3, 4, 5].sample,
+    comment: ["A fantastic experience!",
+              "A wonderful getaway!",
+              "An unforgettable adventure!",
+              "A peaceful retreat.",
+              "A tropical paradise.",
+              "An island that offers something for everyone.",
+              "A beautiful island with so much to offer.",
+              "A hidden gem with so much to explore."].sample
+  )
+end
+
+puts "Created #{Booking.count} bookings 📅"
+
+puts "Created #{Review.count} reviews 🌟"
+
+puts "Seeds complete! 🌱"

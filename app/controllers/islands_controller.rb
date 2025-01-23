@@ -1,5 +1,5 @@
 class IslandsController < ApplicationController
-  before_action :authenticate_user!, only: [:create]
+  before_action :authenticate_user!, only: [:new, :create]
 
   def index
     @islands = Island.all
@@ -49,6 +49,6 @@ class IslandsController < ApplicationController
   private
 
   def island_params
-    params.require(:island).permit(:name, :description, :location, :price, :capacity)
+    params.require(:island).permit(:name, :description, :location, :price, :capacity, :photo)
   end
 end

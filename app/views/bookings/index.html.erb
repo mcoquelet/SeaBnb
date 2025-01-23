@@ -1,22 +1,13 @@
 <div class="container">
   <h1>My Bookings</h1>
   <% @bookings.each do |booking| %>
-    <h2><%= booking.island.name %> </h2>
+    <h2><%= link_to booking.island.name, island_path(booking.island) %> </h2>
     <p><%= booking.start_date %> - <%= booking.end_date %> </p>
     <p><%= booking.guest_number %></p>
     <div>
       <%= link_to "Add review", new_booking_review_path(booking), class: "btn btn-primary" %>
-      <% booking.reviews.each do |review| %>
-        <div class="review bg-light p-2 my-2">
-          <p class="fst-italic"><%= review.booking.user.first_name %> (<%= review.created_at %>)</p>
-          <% review.rating.times do %>
-            <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
-          <% end %>
-          <% (5 - review.rating).times do %>
-            <i class="fa-regular fa-star" style="color: #FFD43B;"></i>
-          <% end %>
-          <p><%= review.comment %></p>
-        </div>
+      <% booking.reviews.reverse.each do |review| %>
+        <%= render "/reviews/show_review", review: review %>
       <% end %>
     </div>
   <% end %>
