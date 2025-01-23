@@ -8,17 +8,17 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   root to: "islands#index"
-  
+
   # Route to access islands and create bookings
   resources :islands, only: [:new, :show, :create, :destroy] do
-    resources :bookings, only: [:new, :create]
+    resources :bookings, only: [:create]
   end
-  
+
   # Route to access my bookings and reviews
   resources :bookings, only: [:index] do
     resources :reviews, only: [:new, :create]
   end
-  
+
   # Route to access favorites
   get '/favorites', to: 'favorites#index', as: :favorites
   # Custom routes for favorite and unfavorite actions

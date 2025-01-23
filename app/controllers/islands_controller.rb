@@ -23,6 +23,8 @@ class IslandsController < ApplicationController
         info_window_html: render_to_string(partial: "info_window", locals: {island: @island})
       }
     ]
+
+    @booking = Booking.new
   end
 
   def new
