@@ -11,6 +11,13 @@
           <p>Location: <%= island.location %></p>
           <p>Rating: <%= island.average_rating %>/5</p>
           <p>Capacity: <%= island.capacity %></p>
+          <% if island.photo.attached? %>
+            <%= cl_image_tag island.photo.key, height: 300, width: 400, crop: :fill %>
+          <% else %>
+            <div style="width: 400px; height: 300px; border: 1px dashed #ccc; display: flex; align-items: center; justify-content: center; background-color: #f9f9f9;">
+            <span style="color: #888; font-size: 14px;">No Image Available</span>
+            </div>
+          <% end %>
           <%= button_to "Delete", island_path(island), method: :delete, data: { confirm: "Are you sure you want to delete this island?"}, class: "btn btn-danger"%>
         </li>
       <% end %>
@@ -31,5 +38,6 @@
   <%= f.input :price %>
   <%= f.input :capacity %>
   <%= f.input :location %>
+  <%= f.input :photo, as: :file %>
   <%= f.submit %>
 <% end %>
