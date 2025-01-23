@@ -124,7 +124,7 @@ puts "Created #{Island.count} islands 🏝"
 # ------------- Images --------------------
 photos = [
   "https://media.cntraveler.com/photos/6480f7ef80f906257d9d0eac/16:9/w_2560%2Cc_limit/Best%2520snorkeling%2520in%2520the%2520world_%2520San%2520Crist%25C3%25B3bal%2C%2520Gal%25C3%25A1pagos%2520GettyImages-1482774223.jpg",
-  "https://media.cntraveler.com/photos/6480f7ef80f906257d9d0eac/16:9/w_2560%2Cc_limit/Best%2520snorkeling%2520in%2520the%2520world_%2520San%2520Crist%25C3%25B3bal%2C%2520Gal%25C3%25A1pagos%2520GettyImages-1482774223.jpg",
+  "https://www.nationsonline.org/gallery/World/island-countries.jpg",
   "https://media.cntraveler.com/photos/6480f7ef80f906257d9d0eac/16:9/w_2560%2Cc_limit/Best%2520snorkeling%2520in%2520the%2520world_%2520San%2520Crist%25C3%25B3bal%2C%2520Gal%25C3%25A1pagos%2520GettyImages-1482774223.jpg",
   "https://media.cntraveler.com/photos/6480f7ef80f906257d9d0eac/16:9/w_2560%2Cc_limit/Best%2520snorkeling%2520in%2520the%2520world_%2520San%2520Crist%25C3%25B3bal%2C%2520Gal%25C3%25A1pagos%2520GettyImages-1482774223.jpg",
   "https://media.cntraveler.com/photos/6480f7ef80f906257d9d0eac/16:9/w_2560%2Cc_limit/Best%2520snorkeling%2520in%2520the%2520world_%2520San%2520Crist%25C3%25B3bal%2C%2520Gal%25C3%25A1pagos%2520GettyImages-1482774223.jpg"
@@ -151,7 +151,7 @@ puts "Attached images to all islands 🖼"
 
   booking.reviews.create(
     created_at: booking.end_date + 2,
-    rating: [1, 2, 3, 4, 5].sample,
+    rating: [3, 4, 5].sample,
     comment: ["A fantastic experience!",
               "A wonderful getaway!",
               "An unforgettable adventure!",
