@@ -1,5 +1,4 @@
 <div class="container mb-5">
-
   <h1 class="my-3"><i class="fa-solid fa-umbrella-beach" style="color: #59a457;"></i> <%= @island.name %></h1>
   <p>
     <% @island.average_rating.floor.times do %>
@@ -10,46 +9,7 @@
     <% end %>
     <%= @island.average_rating %>/5
   </p>
-  <div class="row row-cols-1 row-cols-md-2 g-4">
-    <div class="col">
-      <% if @island.photos.attached? %>
-        <%= cl_image_tag @island.photos.first.key, height: 300, width: 400, crop: :fill %>
-      <% else %>
-          <div style="width: 400px; height: 300px; border: 1px dashed #ccc; display: flex; align-items: center; justify-content: center; background-color: #f9f9f9;">
-          <span style="color: #888; font-size: 14px;">No Image Available</span>
-          </div>
-      <% end %>
-      <p>Description: <%= @island.description %></p>
-      <p>Price: $<%= @island.price %> per day</p>
-      <p>Location: <%= @island.location %></p>
-      <p>Capacity: <%= @island.capacity %></p>
-      <% @island.reviews.each do |review| %>
-        <%= render "/reviews/show_review", review: review %>
-      <% end %>
-    </div>
-    <div class="col">
-      <div style="width: 100%; height: 600px;"
-        data-controller="map"
-        data-map-markers-value="<%= @marker.to_json %>"
-        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-      </div>
-    </div>
-  </div>
-
-  <%= simple_form_for [@island, @booking] do |f| %>
-    <%= f.input :start_date, required: true,
-                              as: :string,
-                              input_html: { data: { controller: "datepicker" } } %>
-    <%= f.input :end_date, required: true,
-                              as: :string,
-                              input_html: { data: { controller: "datepicker" } } %>
-    <%= f.input :guest_number, required: true %>
-    <%= f.button :submit, "Book now", class: "btn btn-primary" %>
-  <% end %>
-</div>
-
-<div class="container">
-  <div class="card-trip">
+  <div class="card-trip pb-3">
     <% if @island.photos.attached? %>
         <%= cl_image_tag @island.photos.first.key %>
     <% else %>
@@ -59,32 +19,50 @@
     <% end %>
     <div class="card-trip-infos">
       <div>
-        <p><strong>Description:</strong> <%= @island.description %></p>
-        <p><strong>Capacity:</strong> <%= @island.capacity %></p>
+        <h6> <%= @island.description %></h6>
+        <h6><i class=“fa-solid fa-bed”></i> <%= @island.capacity %> guests</p>
       </div>
-      <h2 class="card-trip-pricing">$<%= @island.price %> night</h2>
+      <h2 class="card-trip-pricing">$<%= @island.price %> <span class="fw-normal">night</span></h2>
     </div>
   </div>
 
-  <div class="row">
-    <div class="col">
-      <div style="width: 100%; height: 600px;"
+  <div class="row mt-3 border-top py-3">
+    <div class="col-lg-8">
+      <div class="rounded" style="width: 100%; height: 600px;"
         data-controller="map"
         data-map-markers-value="<%= @marker.to_json %>"
         data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
       </div>
     </div>
-    <div class="col">
+    <div class="col-lg-4 form">
       <%= simple_form_for [@island, @booking] do |f| %>
-        <%= f.input :start_date, required: true,
-                                as: :string,
-                                input_html: { data: { controller: "datepicker" } } %>
-        <%= f.input :end_date, required: true,
-                                as: :string,
-                                input_html: { data: { controller: "datepicker" } } %>
+        <div class="row">
+          <div class="col-md-6">
+            <%= f.input :start_date, required: true,
+                                    as: :string,
+                                    input_html: { data: { controller: "datepicker" } } %>
+          </div>
+          <div class="col-md-6">
+            <%= f.input :end_date, required: true,
+                                    as: :string,
+                                   input_html: { data: { controller: "datepicker" } } %>
+          </div>
+        </div>
         <%= f.input :guest_number, required: true %>
-        <%= f.button :submit, "Book now", class: "btn btn-primary" %>
+        <%= f.button :submit, "Book now", class: "btn btn-primary w-100", input_html: { data: { controller: "availability_toggle" } } %>
       <% end %>
     </div>
   </div>
+  <div class="row border-top py-3">
+  <h2>Reviews</h2>
+  <% @island.reviews.each_slice(2) do |reviews| %>
+    <div class="row">
+      <% reviews.each do |review| %>
+        <div class="col-lg-6">
+          <%= render "/reviews/show_review", review: review %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
 </div>
