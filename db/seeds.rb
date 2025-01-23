@@ -9,6 +9,9 @@
 #   end
 
 
+# allows application to access files from URLs
+require 'open-uri'
+
 #-------------- Clean Database ----------------
 #
 Island.destroy_all
@@ -117,6 +120,22 @@ Island.create(
 )
 
 puts "Created #{Island.count} islands 🏝"
+
+# ------------- Images --------------------
+photos = [
+  "https://media.cntraveler.com/photos/6480f7ef80f906257d9d0eac/16:9/w_2560%2Cc_limit/Best%2520snorkeling%2520in%2520the%2520world_%2520San%2520Crist%25C3%25B3bal%2C%2520Gal%25C3%25A1pagos%2520GettyImages-1482774223.jpg",
+  "https://media.cntraveler.com/photos/6480f7ef80f906257d9d0eac/16:9/w_2560%2Cc_limit/Best%2520snorkeling%2520in%2520the%2520world_%2520San%2520Crist%25C3%25B3bal%2C%2520Gal%25C3%25A1pagos%2520GettyImages-1482774223.jpg",
+  "https://media.cntraveler.com/photos/6480f7ef80f906257d9d0eac/16:9/w_2560%2Cc_limit/Best%2520snorkeling%2520in%2520the%2520world_%2520San%2520Crist%25C3%25B3bal%2C%2520Gal%25C3%25A1pagos%2520GettyImages-1482774223.jpg",
+  "https://media.cntraveler.com/photos/6480f7ef80f906257d9d0eac/16:9/w_2560%2Cc_limit/Best%2520snorkeling%2520in%2520the%2520world_%2520San%2520Crist%25C3%25B3bal%2C%2520Gal%25C3%25A1pagos%2520GettyImages-1482774223.jpg",
+  "https://media.cntraveler.com/photos/6480f7ef80f906257d9d0eac/16:9/w_2560%2Cc_limit/Best%2520snorkeling%2520in%2520the%2520world_%2520San%2520Crist%25C3%25B3bal%2C%2520Gal%25C3%25A1pagos%2520GettyImages-1482774223.jpg"
+]
+
+Island.all.each_with_index do |island, index|
+  file = URI.parse(photos[index % photos.length]).open # Open the URL for the image
+  island.photo.attach(io: file, filename: "island_#{index + 1}.jpg", content_type: "image/jpeg")
+end
+
+puts "Attached images to islands 🖼"
 
 # ------------- Bookings and reviews --------------------
 
