@@ -12,7 +12,7 @@ $font-size-base:         1rem;
 
 // Colors
 $body-color: $gray;
-$primary:    $blue;
+$primary:    $middle-blue;
 $success:    $green;
 $info:       $yellow;
 $danger:     $red;
@@ -26,3 +26,5 @@ $border-radius-xl:            .5rem;
 $border-radius-xxl:           1rem;
 
 // Override other variables below!
+$dark: $dark-blue;
+$light: $light-blue;
