@@ -1,35 +1,22 @@
-<h1>Available Islands</h1>
-<ul>
-  <% @islands.each do |island| %>
-    <li>
-      <h2><%= island.name %></h2>
-      <% if island.photos.attached? %>
-        <%= cl_image_tag island.photos.first.key, height: 300, width: 400, crop: :fill %>
-      <% else %>
-        <div style="width: 400px; height: 300px; border: 1px dashed #ccc; display: flex; align-items: center; justify-content: center; background-color: #f9f9f9;">
-        <span style="color: #888; font-size: 14px;">No Image Available</span>
-        </div>
-      <% end %>
-      <p>Price: $<%= island.price %> per day</p>
-      <p>Location: <%= island.location %></p>
-      <p>Rating: <%= island.average_rating %>/5</p>
-
-      <% if current_user %>
-        <% if current_user.favorites.exists?(island: island) %>
-          <%= button_to "Unfavorite", unfavorite_island_path(island), method: :delete, class: "btn btn-danger", style: "margin-bottom: 8px"%>
-        <% else %>
-          <%= button_to "Favorite", favorite_island_path(island), method: :post, class: "btn btn-success", style: "margin-bottom: 8px"%>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-9">
+      <div class="row row-cols-1 g-4">
+        <% @islands.each do |island| %>
+          <div class="col">
+            <%= render 'card', island: island %>
+          </div>
         <% end %>
-      <% end %>
-      <%= link_to "View Details", island_path(island), class: "btn btn-primary", style: "margin-bottom: 16px"%>
-    </li>
-  <% end %>
-</ul>
+      </div>
+    </div>
 
-<div>
-  <div style="width: 100%; height: 600px;"
-    data-controller="map"
-    data-map-markers-value="<%= @markers.to_json %>"
-    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+    <div class="col-lg-3">
+      <div class="sticky-top rounded shadow-sm"
+      style="width: 100%; height: 88vh; top: 80px; z-index: 1000;"
+        data-controller="map"
+        data-map-markers-value="<%= @markers.to_json %>"
+        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+      </div>
+    </div>
   </div>
 </div>
