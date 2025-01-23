@@ -1,0 +1,46 @@
+<div class="card-product">
+  <%= link_to '', island_path(island), class: "card-link" %>
+  <% if island.photos.attached? %>
+    <%= cl_image_tag island.photos.first.key, height: 300, width: 400, crop: :fill %>
+  <% else %>
+    <div style="width: 400px; height: 300px; border: 1px dashed #ccc; display: flex; align-items: center; justify-content: center; background-color: #f9f9f9;">
+    <span style="color: #888; font-size: 14px;">No Image Available</span>
+    </div>
+  <% end %>
+  <div class="card-product-infos">
+    <h2><%= island.name %></h2>
+    <p><i class="fa-solid fa-location-dot"></i> <%= island.location %></p>
+    <p><i class="fa-solid fa-bed"></i> <%= island.capacity %> guests</p>
+    <p><%= island.description %></p>
+    <div class="card-product-rating d-flex align-items-center">
+      <p>
+        <% island.average_rating.floor.times do %>
+          <i class="fa-solid fa-star"></i>
+        <% end %>
+        <% (5 - island.average_rating.floor).times do %>
+          <i class="fa-regular fa-star"></i>
+        <% end %>
+      </p>
+      <p> (<%= island.average_rating %>)</p>
+    </div>
+
+  </div>
+  <div class="card-product-favorite">
+    <% if current_user %>
+      <% if current_user.favorites.exists?(island: island) %>
+        <%= link_to unfavorite_island_path(island), data: { turbo_method: :delete } do %>
+          <i class="fa-solid fa-heart favorite"></i>
+        <% end %>
+      <% else %>
+        <%= link_to favorite_island_path(island), data: { turbo_method: :post } do %>
+          <i class="fa-solid fa-heart"></i>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="card-product-price text-end">
+    <h3>$ <%= island.price %></h3><p> per day</p>
+    <p><%= link_to "Book Now", island_path(island), class: "btn btn-primary" %></p>
+  </div>
+</div>
