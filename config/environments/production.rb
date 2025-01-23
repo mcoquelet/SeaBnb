@@ -37,7 +37,10 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = "X-Accel-Redirect" # for NGINX
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
-  config.active_storage.service = :local
+  config.active_storage.service = :cloudinary
+  # NOTE: We need to still redeploy our app on Heroku and make sure to push our Cloudinary_URL env variable to Heroku
+    # 1. command: heroku config:set CLOUDINARY_URL=cloudinary://166...
+    # 2. command: heroku config (Checking)
 
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil
