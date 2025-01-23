@@ -3,8 +3,8 @@
   <% @islands.each do |island| %>
     <li>
       <h2><%= island.name %></h2>
-      <% if island.photo.attached? %>
-        <%= cl_image_tag island.photo.key, height: 300, width: 400, crop: :fill %>
+      <% if island.photos.attached? %>
+        <%= cl_image_tag island.photos.first.key, height: 300, width: 400, crop: :fill %>
       <% else %>
         <div style="width: 400px; height: 300px; border: 1px dashed #ccc; display: flex; align-items: center; justify-content: center; background-color: #f9f9f9;">
         <span style="color: #888; font-size: 14px;">No Image Available</span>

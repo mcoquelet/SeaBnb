@@ -132,10 +132,11 @@ photos = [
 
 Island.all.each_with_index do |island, index|
   file = URI.parse(photos[index % photos.length]).open # Open the URL for the image
-  island.photo.attach(io: file, filename: "island_#{index + 1}.jpg", content_type: "image/jpeg")
+  island.photos.attach(io: file, filename: "island_#{index + 1}.jpg", content_type: "image/jpeg")
+  puts "Attached image to #{island.name}"
 end
 
-puts "Attached images to islands 🖼"
+puts "Attached images to all islands 🖼"
 
 # ------------- Bookings and reviews --------------------
 

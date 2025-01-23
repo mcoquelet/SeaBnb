@@ -11,8 +11,8 @@
           <p>Location: <%= island.location %></p>
           <p>Rating: <%= island.average_rating %>/5</p>
           <p>Capacity: <%= island.capacity %></p>
-          <% if island.photo.attached? %>
-            <%= cl_image_tag island.photo.key, height: 300, width: 400, crop: :fill %>
+          <% if island.photos.attached? %>
+            <%= cl_image_tag island.photos.first.key, height: 300, width: 400, crop: :fill %>
           <% else %>
             <div style="width: 400px; height: 300px; border: 1px dashed #ccc; display: flex; align-items: center; justify-content: center; background-color: #f9f9f9;">
             <span style="color: #888; font-size: 14px;">No Image Available</span>
@@ -39,6 +39,6 @@
   <%= f.input :capacity %>
   <%= f.input :location, input_html: {data: {location_autocomplete_target: "location"}, class: "d-none"},
       wrapper_html: {data: {controller: "location-autocomplete", location_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}} %>
-  <%= f.input :photo, as: :file %>
+  <%= f.input :photos, as: :file, input_html: { multiple: true } %>
   <%= f.submit %>
 <% end %>
