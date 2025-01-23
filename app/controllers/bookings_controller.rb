@@ -1,10 +1,6 @@
 class BookingsController < ApplicationController
-  before_action :set_island, only: [:new, :create]
-  before_action :authenticate_user!, only: [:new, :create]
-
-  def new
-    @booking = Booking.new
-  end
+  before_action :set_island, only: [:create]
+  before_action :authenticate_user!, only: [:create]
 
   def create
     @booking = Booking.new(booking_params)
