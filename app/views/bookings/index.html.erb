@@ -5,15 +5,11 @@
     <% if @current_bookings.any? %>
       <% @current_bookings.each do |booking| %>
         <div class="col">
-          <h2><%= link_to booking.island.name, island_path(booking.island) %> </h2>
-          <p><%= booking.start_date %> - <%= booking.end_date %> </p>
-          <p><%= booking.guest_number %></p>
-          <div>
-            <%= link_to "Add review", new_booking_review_path(booking), class: "btn btn-primary" %>
-            <% booking.reviews.reverse.each do |review| %>
-              <%= render "/reviews/show_review", review: review %>
-            <% end %>
-          </div>
+          <%= render 'islands/card', island: booking.island %>
+          <%= link_to "Add review", new_booking_review_path(booking), class: "btn btn-primary my-4" %>
+          <% booking.reviews.reverse.each do |review| %>
+            <%= render "/reviews/show_review", review: review %>
+          <% end %>
         </div>
       <% end %>
     <% else %>
