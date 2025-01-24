@@ -1,6 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="toggle"
+// Connects to data-controller="toggle-booking"
 export default class extends Controller {
 
   static targets = ["togglableElement", "button", "startDate", "endDate", "guestNumber", "price", "nightAmount", "totalPrice"]
