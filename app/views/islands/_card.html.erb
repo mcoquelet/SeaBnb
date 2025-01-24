@@ -2,6 +2,8 @@
   <%= link_to '', island_path(island), class: "card-link" %>
   <% if island.photos.attached? %>
     <!-- Bootstrap Carousel -->
+    <div class="carousel-container">
+    </div>
     <div id="carousel-<%= island.id %>" class="carousel slide" data-bs-ride="carousel">
       <!-- Carousel Items -->
       <div class="carousel-inner">
