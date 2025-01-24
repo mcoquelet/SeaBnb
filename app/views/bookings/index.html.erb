@@ -1,14 +1,44 @@
 <div class="container">
-  <h1>My Bookings</h1>
-  <% @bookings.each do |booking| %>
-    <h2><%= link_to booking.island.name, island_path(booking.island) %> </h2>
-    <p><%= booking.start_date %> - <%= booking.end_date %> </p>
-    <p><%= booking.guest_number %></p>
-    <div>
-      <%= link_to "Add review", new_booking_review_path(booking), class: "btn btn-primary" %>
-      <% booking.reviews.reverse.each do |review| %>
-        <%= render "/reviews/show_review", review: review %>
+
+  <h1>My current bookings</h1>
+  <div class="row row-cols-1 g-4">
+    <% if @current_bookings.any? %>
+      <% @current_bookings.each do |booking| %>
+        <div class="col">
+          <h2><%= link_to booking.island.name, island_path(booking.island) %> </h2>
+          <p><%= booking.start_date %> - <%= booking.end_date %> </p>
+          <p><%= booking.guest_number %></p>
+          <div>
+            <%= link_to "Add review", new_booking_review_path(booking), class: "btn btn-primary" %>
+            <% booking.reviews.reverse.each do |review| %>
+              <%= render "/reviews/show_review", review: review %>
+            <% end %>
+          </div>
+        </div>
       <% end %>
-    </div>
-  <% end %>
+    <% else %>
+      <%= render "shared/empty_content", element: "current bookings" %>
+    <% end %>
+  </div>
+
+  <h1>My past bookings</h1>
+  <div class="row row-cols-1 g-4">
+    <% if @past_bookings.any? %>
+      <% @past_bookings.each do |booking| %>
+        <div class="col">
+        <%= render 'islands/card', island: booking.island %>
+        <div>
+        </div>
+          <% unless booking.reviews.any? %>
+            <%= link_to "Add review", new_booking_review_path(booking), class: "btn btn-primary" %>
+          <% end %>
+          <% booking.reviews.reverse.each do |review| %>
+            <%= render "/reviews/show_review", review: review %>
+          <% end %>
+        </div>
+      <% end %>
+    <% else %>
+      <%= render "shared/empty_content", element: "past bookings" %>
+    <% end %>
+  </div>
 </div>
