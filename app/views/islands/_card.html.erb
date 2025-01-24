@@ -3,8 +3,8 @@
   <% if island.photos.attached? %>
     <%= cl_image_tag island.photos.first.key, height: 300, width: 400, crop: :fill %>
   <% else %>
-    <div style="width: 400px; height: 300px; border: 1px dashed #ccc; display: flex; align-items: center; justify-content: center; background-color: #f9f9f9;">
-    <span style="color: #888; font-size: 14px;">No Image Available</span>
+    <div style="width: 300px; height: 300px; border: 1px dashed #ccc; display: flex; align-items: center; justify-content: center; background-color: #f9f9f9; flex-shrink: 0;">
+      <span style="color: #888; font-size: 14px;">No Image Available</span>
     </div>
   <% end %>
   <div class="card-product-infos">
