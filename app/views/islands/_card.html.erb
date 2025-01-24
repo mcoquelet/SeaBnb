@@ -13,16 +13,21 @@
     <p><i class="fa-solid fa-bed"></i> <%= island.capacity %> guests</p>
     <p><%= island.description %></p>
     <div class="card-product-rating d-flex align-items-center">
-      <p>
-        <% island.average_rating.floor.times do %>
-          <i class="fa-solid fa-star"></i>
-        <% end %>
-        <% (5 - island.average_rating.floor).times do %>
-          <i class="fa-regular fa-star"></i>
-        <% end %>
-      </p>
-      <p> (<%= island.average_rating %>)</p>
+      <% if island.average_rating %>
+        <p>
+          <% island.average_rating.floor.times do %>
+            <i class="fa-solid fa-star"></i>
+          <% end %>
+          <% (5 - island.average_rating.floor).times do %>
+            <i class="fa-regular fa-star"></i>
+          <% end %>
+          (<%= island.average_rating %>)
+        </p>
+      <% else %>
+        <p>No ratings yet</p>
+      <% end %>
     </div>
+
 
   </div>
   <div class="card-product-favorite">
