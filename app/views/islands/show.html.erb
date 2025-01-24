@@ -1,5 +1,4 @@
 <div class="container mb-5">
-
   <h1 class="my-3"><i class="fa-solid fa-umbrella-beach" style="color: #59a457;"></i> <%= @island.name %></h1>
   <p>
     <% if @island.average_rating %>
@@ -14,42 +13,75 @@
       <%= "No ratings yet." %>
     <% end %>
   </p>
-  <div class="row row-cols-1 row-cols-md-2 g-4">
-    <div class="col">
-      <% if @island.photos.attached? %>
-        <%= cl_image_tag @island.photos.first.key, height: 300, width: 400, crop: :fill %>
-      <% else %>
+  <div class="card-trip pb-3">
+    <% if @island.photos.attached? %>
+        <%= cl_image_tag @island.photos.first.key %>
+    <% else %>
           <div style="width: 400px; height: 300px; border: 1px dashed #ccc; display: flex; align-items: center; justify-content: center; background-color: #f9f9f9;">
           <span style="color: #888; font-size: 14px;">No Image Available</span>
           </div>
-      <% end %>
-      <p>Description: <%= @island.description %></p>
-      <p>Price: $<%= @island.price %> per day</p>
-      <p>Location: <%= @island.location %></p>
-      <p>Capacity: <%= @island.capacity %></p>
-      <% @island.reviews.each do |review| %>
-        <%= render "/reviews/show_review", review: review %>
-      <% end %>
+    <% end %>
+    <div class="card-trip-infos">
+      <div>
+        <h6 class="fw-bold mb-2"><i class="fa-solid fa-location-dot"></i> <%= @island.location %> guests</h6>
+        <h6> <%= @island.description %></h6>
+        <p class="fw-bold"><i class="fa-solid fa-bed"></i> <%= @island.capacity %> guests</p>
+      </div>
+      <h2 class="card-trip-pricing">$<%= @island.price %> <span class="fw-normal">per day</span></h2>
     </div>
-    <div class="col">
-      <div style="width: 100%; height: 600px;"
+  </div>
+
+  <div class="row mt-3 border-top py-3">
+    <div class="col-lg-8">
+      <div class="rounded" style="width: 100%; height: 600px;"
         data-controller="map"
         data-map-markers-value="<%= @marker.to_json %>"
         data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
       </div>
     </div>
+    <div class="col-lg-4 form sticky" data-controller="toggle-booking">
+      <%= simple_form_for [@island, @booking] do |f| %>
+        <div class="row">
+          <div class="col-md-6">
+            <%= f.input :start_date, required: true,
+                                    as: :string,
+                                    input_html: { data: { controller: "datepicker", toggle_booking_target: "startDate" } } %>
+          </div>
+          <div class="col-md-6">
+            <%= f.input :end_date, required: true,
+                                    as: :string,
+                                   input_html: { data: { controller: "datepicker", toggle_booking_target: "endDate" } } %>
+          </div>
+        </div>
+        <%= f.input :guest_number, required: true, input_html: { data: { toggle_booking_target: "guestNumber" } }%>
+        <%= f.button :submit, "Check availability", class: "btn btn-primary w-100", data: { action: "click->toggle-booking#fire", toggle_booking_target: "button" } %>
+      <% end %>
+      <div data-toggle-booking-target="togglableElement" class="d-none">
+        <div class="d-flex mt-3 justify-content-between">
+          <p>Price</p>
+          <p data-toggle-booking-target="price"><%= @island.price %></p>
+        </div>
+        <div class="d-flex justify-content-between">
+          <p>Nights</p>
+          <p data-toggle-booking-target="nightAmount"></p>
+        </div>
+        <div class="d-flex py-3 justify-content-between border-top">
+          <p><strong>Total price</strong></p>
+          <p data-toggle-booking-target="totalPrice"></p>
+        </div>
+      </div>
+    </div>
   </div>
+  <div class="row border-top py-3">
+  <h2>Reviews</h2>
+  <% @island.reviews.each_slice(2) do |reviews| %>
+    <div class="row">
+      <% reviews.each do |review| %>
+        <div class="col-lg-6">
+          <%= render "/reviews/show_review", review: review %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 </div>
-
-<div class="container">
-  <%= simple_form_for [@island, @booking] do |f| %>
-  <%= f.input :start_date, required: true,
-                            as: :string,
-                            input_html: { data: { controller: "datepicker" } } %>
-  <%= f.input :end_date, required: true,
-                            as: :string,
-                            input_html: { data: { controller: "datepicker" } } %>
-  <%= f.input :guest_number, required: true %>
-  <%= f.button :submit, "Book now", class: "btn btn-primary" %>
-<% end %>
 </div>
