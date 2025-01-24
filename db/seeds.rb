@@ -226,37 +226,43 @@ puts "Created #{Island.count} islands 🏝"
 photos = [
   [
     "https://www.themilliardaire.com/wp-content/uploads/2015/10/Four-Season-Bora-Bora-1.jpg",
-    "https://bookretreats.com/cdn-cgi/image/width=1200,quality=65,f=auto,sharpen=1,fit=cover,gravity=auto/assets/photo/retreat/0m/32k/32029/p_1039379/1000_1682673845.jpg",
-    "https://www.themilliardaire.com/wp-content/uploads/2015/10/Four-Season-Bora-Bora-1.jpg"
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQx6jq9r6nwLyqpj0OJL9rzayA7vuX4oB_rIFReERTDM3gacRlWRC53H7Y2G3aZBM77YUs&usqp=CAU"
   ],
   [
     "https://bookretreats.com/cdn-cgi/image/width=1200,quality=65,f=auto,sharpen=1,fit=cover,gravity=auto/assets/photo/retreat/0m/32k/32029/p_1039379/1000_1682673845.jpg",
-    "https://bookretreats.com/cdn-cgi/image/width=1200,quality=65,f=auto,sharpen=1,fit=cover,gravity=auto/assets/photo/retreat/0m/32k/32029/p_1039379/1000_1682673845.jpg",
-    "https://bookretreats.com/cdn-cgi/image/width=1200,quality=65,f=auto,sharpen=1,fit=cover,gravity=auto/assets/photo/retreat/0m/32k/32029/p_1039379/1000_1682673845.jpg"
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHWPxtI9d9H6v8YRVrVk7659P-v4o5j8gmsKeJBSLnWar7PvGbLjs7e_NFP_O20dIrsjM&usqp=CAU"
   ],
   [
-    "https://ulysse.com/news/wp-content/uploads/2024/01/Les-iles-Maldives-.jpg"
+    "https://ulysse.com/news/wp-content/uploads/2024/01/Les-iles-Maldives-.jpg",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQir8NL-vKoJtbuS48tJIwxePM50A7qtx-AgAe7Bo1TnBEGxJNRGvj44BvmATYrcPqOzTo&usqp=CAU"
   ],
   [
     "https://guidetogreenland.com/wp-content/uploads/2020/05/nuuk-the-worlds-smallest-capital-4-day-package-tour-from-iceland-to-greenland-day-Guide-to-Greenland1.jpg",
+    "https://static8.depositphotos.com/1037168/965/i/450/depositphotos_9652124-stock-photo-tropical-island-and-over-water.jpg"
   ],
   [
-    "https://www.usatravel.be/web/image/product.public.category/25/main_image?unique=80270bd"
+    "https://www.usatravel.be/web/image/product.public.category/25/main_image?unique=80270bd",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFYuz44OHQYbl014GvPJpREdlsKhdBCxfgFvA8kz-CcNbaZtMNo_AHxQscUXphb85M0Dw&usqp=CAU"
   ],
   [
-    "https://inspirationseek.com/wp-content/uploads/2014/11/Palawan-Island-Resort-El-Nido.jpg"
+    "https://inspirationseek.com/wp-content/uploads/2014/11/Palawan-Island-Resort-El-Nido.jpg",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQewvyTdsVOT4eL_qFeWfWSkNgnvo7rQz1yNR69mqCqPYGFe9bDxwGuntdW0JihNI0eAPE&usqp=CAU"
   ],
   [
-    "https://seychellestourism.in/wp-content/uploads/where-is-seychelles-island-located-on-world-map-europe-africa-india-1568x1045.jpg"
+    "https://seychellestourism.in/wp-content/uploads/where-is-seychelles-island-located-on-world-map-europe-africa-india-1568x1045.jpg",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqHSV74HBm4k0RhN84lBe5ONnJ3C5N059P06LWCAcediNJYceSrY79RKTXIxfdUa1uu7k&usqp=CAU"
   ],
   [
-    "https://mediaim.expedia.com/destination/1/27df0f9f399aaec26a64b7a06606ca7d.jpg"
+    "https://mediaim.expedia.com/destination/1/27df0f9f399aaec26a64b7a06606ca7d.jpg",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7GuO_m1hp82nW_rTarXW_WAzgavs0OAowgw&s"
   ],
   [
-    "https://cf.bstatic.com/xdata/images/hotel/max1024x768/77028250.jpg?k=297ee5b16b3cfc217366615354ab23669655e27164569b61dd07892208ad6b29&o=&hp=1"
+    "https://cf.bstatic.com/xdata/images/hotel/max1024x768/77028250.jpg?k=297ee5b16b3cfc217366615354ab23669655e27164569b61dd07892208ad6b29&o=&hp=1",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzxWXE5AIPgxZNTCaB8oIUOmZeeLMLQO4ZKQ&s"
   ],
   [
-    "https://photos.tpn.to/ph/ok/np/tj/1600x900.jpg"
+    "https://photos.tpn.to/ph/ok/np/tj/1600x900.jpg",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTk-bkyELy-yK7Gyd29MsnHbUHD8bEQOiQ2Lg&s"
   ]
 ]
 
