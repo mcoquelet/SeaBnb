@@ -1,22 +1,14 @@
-<h1>My favorites</h1>
-
-<% if @favorite_islands.any? %>
-  <ul>
-    <% @favorite_islands.each do|island|%>
-      <li>
-        <p><%= island.name %></p>
-        <% if island.photos.attached? %>
-            <%= cl_image_tag island.photos.first.key, height: 300, width: 400, crop: :fill %>
-          <% else %>
-            <div style="width: 400px; height: 300px; border: 1px dashed #ccc; display: flex; align-items: center; justify-content: center; background-color: #f9f9f9;">
-            <span style="color: #888; font-size: 14px;">No Image Available</span>
-            </div>
-          <% end %>
-        <%= link_to "View island details", island_path(island), class: "btn btn-primary", style: "margin-bottom: 16px"%>
-        <%= button_to "Unfavorite", unfavorite_island_path(island), method: :delete, class: "btn btn-danger" %>
-      </li>
+<div class="container">
+  <div class="row row-cols-1 g-4">
+    <h1>My favorites</h1>
+    <% if @favorite_islands.any? %>
+      <% @favorite_islands.each do|island|%>
+        <div class="col">
+          <%= render "islands/card", island: island %>
+        </div>
+      <% end %>
+    <% else %>
+      <p>"You have not favorited any islands yet."</p>
     <% end %>
-  </ul>
-<% else %>
-  <p>"You have not favorited any islands yet."</p>
-<% end %>
+  </div>
+</div>

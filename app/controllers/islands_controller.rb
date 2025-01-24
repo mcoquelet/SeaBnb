@@ -3,6 +3,10 @@ class IslandsController < ApplicationController
 
   def index
     @islands = Island.all
+    if params[:query].present?
+      sql_subquery = "name ILIKE :query OR description ILIKE :query OR location ILIKE :query"
+      @islands = @islands.where(sql_subquery, query: "%#{params[:query]}%")
+    end
 
     @markers = @islands.geocoded.map do |island|
       {
@@ -41,10 +45,15 @@ class IslandsController < ApplicationController
   def create
     @island = Island.new(island_params)
     @island.user = current_user
-    if @island.save!
-      flash[:notice] = "Island was successfully created."
-    else
-      render :new, status: :unprocessable_entity
+
+    respond_to do |format|
+      if @island.save
+        format.html { redirect_to island_path(@island) }
+        format.json # Follows the classic Rails flow and look for a create.json view
+      else
+        format.html { render "island/new", status: :unprocessable_entity }
+        format.json # Follows the classic Rails flow and look for a create.json view
+      end
     end
   end
 

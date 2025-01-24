@@ -9,9 +9,13 @@
   border-radius: 15px;
 }
 
+.card-product a {
+  text-decoration: none;
+}
+
 .card-product img {
   height: 100%;
-  width: 300px;
+  width: 30%;
   object-fit: cover;
 }
 
@@ -35,6 +39,7 @@
 
 .card-product .card-product-infos {
   padding: 16px;
+  width: 50%;
 }
 
 .card-link {
