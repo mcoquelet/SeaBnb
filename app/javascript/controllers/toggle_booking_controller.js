@@ -35,7 +35,7 @@ export default class extends Controller {
       // Inject the total price into html
       const price = parseInt(this.priceTarget.innerText, 10)
       console.log(price, daysDifference)
-      this.totalPriceTarget.innerHTML = daysDifference*price;
+      this.totalPriceTarget.innerHTML = `$${daysDifference*price}`;
 
     } else {
       alert("Please fill out all fields before checking availability!");
