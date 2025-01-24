@@ -1,44 +1,76 @@
-<h1>Manage Your Islands</h1>
-
-<% if @my_islands.any?%>
-  <h2>Your islands</h2>
-    <ul>
-      <% @my_islands.each do |island| %>
-        <li>
-          <h3><%= island.name %></h3>
-          <p>Description: <%= island.description %></p>
-          <p>Price: $<%= island.price %> per day</p>
-          <p>Location: <%= island.location %></p>
-          <p>Rating: <%= island.average_rating %>/5</p>
-          <p>Capacity: <%= island.capacity %></p>
-          <% if island.photos.attached? %>
-            <%= cl_image_tag island.photos.first.key, height: 300, width: 400, crop: :fill %>
-          <% else %>
-            <div style="width: 400px; height: 300px; border: 1px dashed #ccc; display: flex; align-items: center; justify-content: center; background-color: #f9f9f9;">
-            <span style="color: #888; font-size: 14px;">No Image Available</span>
+<div class="container">
+  <div class="row">
+    <h1>Manage Your Islands</h1>
+    <div class="col" data-controller="insert-in-list">
+      <!-- List of Islands -->
+      <% if @my_islands.any? %>
+        <h3>Your Islands:</h3>
+        <div id="islands" data-insert-in-list-target="items">
+          <% @my_islands.each do |island| %>
+            <div class="mb-4">
+              <div class="card-product">
+                <%= link_to '', island_path(island), class: "card-link" %>
+                <% if island.photos.attached? %>
+                  <%= cl_image_tag island.photos.first.key, height: 300, width: 400, crop: :fill %>
+                <% else %>
+                  <div style="width: 300px; height: 300px; border: 1px dashed #ccc; display: flex; align-items: center; justify-content: center; background-color: #f9f9f9; flex-shrink: 0;">
+                    <span style="color: #888; font-size: 14px;">No Image Available</span>
+                  </div>
+                <% end %>
+                <div class="card-product-infos">
+                  <h2><%= island.name %></h2>
+                  <p><i class="fa-solid fa-location-dot"></i> <%= island.location %></p>
+                  <p><i class="fa-solid fa-bed"></i> <%= island.capacity %> guests</p>
+                  <p><%= island.description %></p>
+                  <div class="card-product-rating d-flex align-items-center">
+                    <% if island.average_rating %>
+                      <p>
+                        <% island.average_rating.floor.times do %>
+                          <i class="fa-solid fa-star"></i>
+                        <% end %>
+                        <% (5 - island.average_rating.floor).times do %>
+                          <i class="fa-regular fa-star"></i>
+                        <% end %>
+                        (<%= island.average_rating %>)
+                      </p>
+                    <% else %>
+                      <p>No ratings yet</p>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="card-product-favorite">
+                  <% if current_user %>
+                    <% if current_user.favorites.exists?(island: island) %>
+                      <%= link_to unfavorite_island_path(island), data: { turbo_method: :delete } do %>
+                        <i class="fa-solid fa-heart favorite"></i>
+                      <% end %>
+                    <% else %>
+                      <%= link_to favorite_island_path(island), data: { turbo_method: :post } do %>
+                        <i class="fa-solid fa-heart"></i>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                </div>
+                <div class="card-product-price text-end">
+                  <h3>$ <%= island.price %></h3>
+                  <p>per day</p>
+                  <%= button_to "Delete", island_path(island), method: :delete, data: { confirm: "Are you sure you want to delete this island?" }, class: "btn btn-danger mt-2" %>
+                </div>
+              </div>
             </div>
           <% end %>
-          <%= button_to "Delete", island_path(island), method: :delete, data: { confirm: "Are you sure you want to delete this island?"}, class: "btn btn-danger"%>
-        </li>
+        </div>
+      <% else %>
+        <p>You have not created any islands yet.</p>
       <% end %>
-    </ul>
-<% else %>
-  <p>You have not created any islands yet.</p>
-<% end %>
 
-
-
-
-
-<h3>Create a New Island</h3>
-
-<%= simple_form_for(@island) do |f| %>
-  <%= f.input :name %>
-  <%= f.input :description %>
-  <%= f.input :price %>
-  <%= f.input :capacity %>
-  <%= f.input :location, input_html: {data: {location_autocomplete_target: "location"}, class: "d-none"},
-      wrapper_html: {data: {controller: "location-autocomplete", location_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}} %>
-  <%= f.input :photos, as: :file, input_html: { multiple: true } %>
-  <%= f.submit %>
-<% end %>
+      <!-- Toggle Form for Creating a New Island -->
+      <div class="mt-5" data-controller="toggle">
+        <button data-action="click->toggle#fire" class="btn btn-outline-primary">Create a new island</button>
+        <div data-toggle-target="togglableElement" class="d-none mt-3">
+          <%= render "form", island: @island %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

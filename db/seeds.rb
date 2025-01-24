@@ -55,6 +55,47 @@ User.create(
  email: 'ella.bloom@example.com'
 )
 
+User.create(
+  first_name: 'Felix',
+  last_name: 'Wander',
+  password: 'mypassword',
+  bio: 'A digital nomad with a love for adventure.',
+  email: 'felix.wander@example.com'
+)
+
+User.create(
+  first_name: 'Grace',
+  last_name: 'Harbor',
+  password: 'mypassword',
+  bio: 'Navigating life’s waves with a steady hand.',
+  email: 'grace.harbor@example.com'
+)
+
+User.create(
+  first_name: 'Henry',
+  last_name: 'Everest',
+  password: 'mypassword',
+  bio: 'Always reaching for new heights.',
+  email: 'henry.everest@example.com'
+)
+
+User.create(
+  first_name: 'Isla',
+  last_name: 'Vale',
+  password: 'mypassword',
+  bio: 'Draws inspiration from tranquil landscapes.',
+  email: 'isla.vale@example.com'
+)
+
+User.create(
+  first_name: 'Jack',
+  last_name: 'Summit',
+  password: 'mypassword',
+  bio: 'Thrives on challenges and new perspectives.',
+  email: 'jack.summit@example.com'
+)
+
+
 puts "Created #{User.count} users 👥"
 
 # ------------- Islands --------------------
@@ -119,15 +160,82 @@ Island.create(
   user_id: User.last.id
 )
 
+Island.create(
+  name: "Palawan Haven",
+  description: "A tropical paradise known for its crystal-clear waters, limestone cliffs, and hidden lagoons.",
+  location: "Philippines",
+  longitude: 119.5107,
+  latitude: 9.8349,
+  price: 6200,
+  capacity: 18,
+  average_rating: 4.8,
+  user_id: User.first.id
+)
+
+Island.create(
+  name: "Seychelles Escape",
+  description: "A breathtaking island archipelago with white sandy beaches and lush nature reserves.",
+  location: "Seychelles",
+  longitude: 55.4920,
+  latitude: -4.6796,
+  price: 7500,
+  capacity: 25,
+  average_rating: 4.9,
+  user_id: User.first.id
+)
+
+Island.create(
+  name: "Zakynthos Bliss",
+  description: "A stunning Greek island famous for its Navagio Beach and electric blue waters.",
+  location: "Ionian Sea, Greece",
+  longitude: 20.7660,
+  latitude: 37.7916,
+  price: 5700,
+  capacity: 22,
+  average_rating: 4.7,
+  user_id: User.last.id
+)
+
+Island.create(
+  name: "Fiji Hideaway",
+  description: "A remote island paradise with vibrant coral reefs and stunning overwater bungalows.",
+  location: "Fiji",
+  longitude: 178.0650,
+  latitude: -17.7134,
+  price: 6800,
+  capacity: 20,
+  average_rating: 4.6,
+  user_id: User.last.id
+)
+
+Island.create(
+  name: "Phuket Getaway",
+  description: "A Thai island with golden beaches, lively nightlife, and breathtaking viewpoints.",
+  location: "Thailand",
+  longitude: 98.3381,
+  latitude: 7.8804,
+  price: 5300,
+  capacity: 28,
+  average_rating: 4.7,
+  user_id: User.first.id
+)
+
+
+
 puts "Created #{Island.count} islands 🏝"
 
 # ------------- Images --------------------
 photos = [
-  "https://media.cntraveler.com/photos/6480f7ef80f906257d9d0eac/16:9/w_2560%2Cc_limit/Best%2520snorkeling%2520in%2520the%2520world_%2520San%2520Crist%25C3%25B3bal%2C%2520Gal%25C3%25A1pagos%2520GettyImages-1482774223.jpg",
-  "https://www.nationsonline.org/gallery/World/island-countries.jpg",
-  "https://media.cntraveler.com/photos/6480f7ef80f906257d9d0eac/16:9/w_2560%2Cc_limit/Best%2520snorkeling%2520in%2520the%2520world_%2520San%2520Crist%25C3%25B3bal%2C%2520Gal%25C3%25A1pagos%2520GettyImages-1482774223.jpg",
-  "https://media.cntraveler.com/photos/6480f7ef80f906257d9d0eac/16:9/w_2560%2Cc_limit/Best%2520snorkeling%2520in%2520the%2520world_%2520San%2520Crist%25C3%25B3bal%2C%2520Gal%25C3%25A1pagos%2520GettyImages-1482774223.jpg",
-  "https://media.cntraveler.com/photos/6480f7ef80f906257d9d0eac/16:9/w_2560%2Cc_limit/Best%2520snorkeling%2520in%2520the%2520world_%2520San%2520Crist%25C3%25B3bal%2C%2520Gal%25C3%25A1pagos%2520GettyImages-1482774223.jpg"
+  "https://www.themilliardaire.com/wp-content/uploads/2015/10/Four-Season-Bora-Bora-1.jpg",
+  "https://bookretreats.com/cdn-cgi/image/width=1200,quality=65,f=auto,sharpen=1,fit=cover,gravity=auto/assets/photo/retreat/0m/32k/32029/p_1039379/1000_1682673845.jpg",
+  "https://ulysse.com/news/wp-content/uploads/2024/01/Les-iles-Maldives-.jpg",
+  "https://guidetogreenland.com/wp-content/uploads/2020/05/nuuk-the-worlds-smallest-capital-4-day-package-tour-from-iceland-to-greenland-day-Guide-to-Greenland1.jpg",
+  "https://www.usatravel.be/web/image/product.public.category/25/main_image?unique=80270bd",
+  "https://inspirationseek.com/wp-content/uploads/2014/11/Palawan-Island-Resort-El-Nido.jpg",
+  "https://seychellestourism.in/wp-content/uploads/where-is-seychelles-island-located-on-world-map-europe-africa-india-1568x1045.jpg",
+  "https://mediaim.expedia.com/destination/1/27df0f9f399aaec26a64b7a06606ca7d.jpg",
+  "https://cf.bstatic.com/xdata/images/hotel/max1024x768/77028250.jpg?k=297ee5b16b3cfc217366615354ab23669655e27164569b61dd07892208ad6b29&o=&hp=1",
+  "https://photos.tpn.to/ph/ok/np/tj/1600x900.jpg"
 ]
 
 Island.all.each_with_index do |island, index|
@@ -159,7 +267,17 @@ puts "Attached images to all islands 🖼"
               "A tropical paradise.",
               "An island that offers something for everyone.",
               "A beautiful island with so much to offer.",
-              "A hidden gem with so much to explore."].sample
+              "A hidden gem with so much to explore.",
+              "A breathtaking escape from the busy world! The serene beaches and lush landscapes make it a paradise for relaxation and adventure alike.",
+              "The perfect place to unwind and recharge. Every sunset felt magical, and the hospitality was truly exceptional!",
+              "An absolute dream destination! From the crystal-clear waters to the vibrant marine life, every moment felt like a scene from a postcard.",
+              "Stunning views and incredible hospitality! The locals were so welcoming, and every corner of the island had something unique to offer.",
+              "A slice of heaven on Earth! The combination of white sandy beaches, turquoise waters, and gentle ocean breezes made it an unforgettable experience.",
+              "Pure tranquility surrounded by nature's beauty. Waking up to the sound of waves and birds was an experience I’ll cherish forever!",
+              "An island adventure like no other! Whether you're exploring hidden caves, snorkeling in colorful reefs, or just enjoying the sun, there’s something for everyone.",
+              "Crystal-clear waters and golden sunsets—unforgettable! This island is the perfect place to relax, explore, and make beautiful memories.",
+              "A must-visit for any nature lover! The diverse wildlife, pristine beaches, and breathtaking landscapes make it a true paradise.",
+              "The best vacation I’ve ever had! Everything from the food to the activities to the stunning scenery was absolutely perfect. I can't wait to come back!"].sample
   )
 end
 

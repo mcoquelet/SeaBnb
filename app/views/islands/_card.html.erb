@@ -3,8 +3,8 @@
   <% if island.photos.attached? %>
     <%= cl_image_tag island.photos.first.key, height: 300, width: 400, crop: :fill %>
   <% else %>
-    <div style="width: 400px; height: 300px; border: 1px dashed #ccc; display: flex; align-items: center; justify-content: center; background-color: #f9f9f9;">
-    <span style="color: #888; font-size: 14px;">No Image Available</span>
+    <div style="width: 300px; height: 300px; border: 1px dashed #ccc; display: flex; align-items: center; justify-content: center; background-color: #f9f9f9; flex-shrink: 0;">
+      <span style="color: #888; font-size: 14px;">No Image Available</span>
     </div>
   <% end %>
   <div class="card-product-infos">
@@ -13,16 +13,21 @@
     <p><i class="fa-solid fa-bed"></i> <%= island.capacity %> guests</p>
     <p><%= island.description %></p>
     <div class="card-product-rating d-flex align-items-center">
-      <p>
-        <% island.average_rating.floor.times do %>
-          <i class="fa-solid fa-star"></i>
-        <% end %>
-        <% (5 - island.average_rating.floor).times do %>
-          <i class="fa-regular fa-star"></i>
-        <% end %>
-      </p>
-      <p> (<%= island.average_rating %>)</p>
+      <% if island.average_rating %>
+        <p>
+          <% island.average_rating.floor.times do %>
+            <i class="fa-solid fa-star"></i>
+          <% end %>
+          <% (5 - island.average_rating.floor).times do %>
+            <i class="fa-regular fa-star"></i>
+          <% end %>
+          (<%= island.average_rating %>)
+        </p>
+      <% else %>
+        <p>No ratings yet</p>
+      <% end %>
     </div>
+
 
   </div>
   <div class="card-product-favorite">
