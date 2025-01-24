@@ -1,12 +1,36 @@
 <div class="card-product">
   <%= link_to '', island_path(island), class: "card-link" %>
   <% if island.photos.attached? %>
-    <%= cl_image_tag island.photos.first.key, height: 300, width: 400, crop: :fill %>
-  <% else %>
-    <div style="width: 300px; height: 300px; border: 1px dashed #ccc; display: flex; align-items: center; justify-content: center; background-color: #f9f9f9; flex-shrink: 0;">
-      <span style="color: #888; font-size: 14px;">No Image Available</span>
+    <!-- Bootstrap Carousel -->
+    <div id="carousel-<%= island.id %>" class="carousel slide" data-bs-ride="carousel">
+      <!-- Carousel Items -->
+      <div class="carousel-inner">
+        <% island.photos.each_with_index do |photo, index| %>
+          <div class="carousel-item <%= 'active' if index.zero? %>">
+            <%= cl_image_tag photo.key, class: "d-block w-100", alt: "Island Photo #{index + 1}" %>
+          </div>
+        <% end %>
+      </div>
+
+      <!-- Controls -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#carousel-<%= island.id %>" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carousel-<%= island.id %>" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
     </div>
-  <% end %>
+
+    <% else %>
+      <div style="width: 400px; height: 300px; border: 1px dashed #ccc; display: flex; align-items: center; justify-content: center; background-color: #f9f9f9; flex-shrink: 0;">
+        <span style="color: #888; font-size: 14px;">No Image Available</span>
+      </div>
+    <% end %>
+
+
+
   <div class="card-product-infos">
     <h2><%= island.name %></h2>
     <p><i class="fa-solid fa-location-dot"></i> <%= island.location %></p>
