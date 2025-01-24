@@ -1,2 +1,21 @@
-<h6><%= island.name %></h6>
-<p><%= island.location %></p>
+<% if island.photos.attached? %>
+    <%= cl_image_tag island.photos.first.key, height: 300, width: 400, crop: :fill %>
+  <% else %>
+    <div style="width: auto; height: 110px; border: 1px dashed #ccc; display: flex; align-items: center; justify-content: center; background-color: #f9f9f9;">
+    <span style="color: #888; font-size: 14px;">No Image Available</span>
+    </div>
+<% end %>
+
+<div class="pop-up-content">
+  <div class="pop-up-row">
+  <h6><%= island.name %></h6>
+  <h6><%= island.average_rating %></h6>
+</div>
+
+<p><%= island.description %></p>
+
+<div class="pop-up-row">
+  <p>$<%= island.price %>/day</p>
+</div>
+
+</div>
