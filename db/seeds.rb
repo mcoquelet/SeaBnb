@@ -220,31 +220,56 @@ Island.create(
   user_id: User.first.id
 )
 
-
-
 puts "Created #{Island.count} islands 🏝"
 
 # ------------- Images --------------------
 photos = [
-  "https://www.themilliardaire.com/wp-content/uploads/2015/10/Four-Season-Bora-Bora-1.jpg",
-  "https://bookretreats.com/cdn-cgi/image/width=1200,quality=65,f=auto,sharpen=1,fit=cover,gravity=auto/assets/photo/retreat/0m/32k/32029/p_1039379/1000_1682673845.jpg",
-  "https://ulysse.com/news/wp-content/uploads/2024/01/Les-iles-Maldives-.jpg",
-  "https://guidetogreenland.com/wp-content/uploads/2020/05/nuuk-the-worlds-smallest-capital-4-day-package-tour-from-iceland-to-greenland-day-Guide-to-Greenland1.jpg",
-  "https://www.usatravel.be/web/image/product.public.category/25/main_image?unique=80270bd",
-  "https://inspirationseek.com/wp-content/uploads/2014/11/Palawan-Island-Resort-El-Nido.jpg",
-  "https://seychellestourism.in/wp-content/uploads/where-is-seychelles-island-located-on-world-map-europe-africa-india-1568x1045.jpg",
-  "https://mediaim.expedia.com/destination/1/27df0f9f399aaec26a64b7a06606ca7d.jpg",
-  "https://cf.bstatic.com/xdata/images/hotel/max1024x768/77028250.jpg?k=297ee5b16b3cfc217366615354ab23669655e27164569b61dd07892208ad6b29&o=&hp=1",
-  "https://photos.tpn.to/ph/ok/np/tj/1600x900.jpg"
+  [
+    "https://www.themilliardaire.com/wp-content/uploads/2015/10/Four-Season-Bora-Bora-1.jpg",
+    "https://bookretreats.com/cdn-cgi/image/width=1200,quality=65,f=auto,sharpen=1,fit=cover,gravity=auto/assets/photo/retreat/0m/32k/32029/p_1039379/1000_1682673845.jpg",
+    "https://www.themilliardaire.com/wp-content/uploads/2015/10/Four-Season-Bora-Bora-1.jpg"
+  ],
+  [
+    "https://bookretreats.com/cdn-cgi/image/width=1200,quality=65,f=auto,sharpen=1,fit=cover,gravity=auto/assets/photo/retreat/0m/32k/32029/p_1039379/1000_1682673845.jpg",
+    "https://bookretreats.com/cdn-cgi/image/width=1200,quality=65,f=auto,sharpen=1,fit=cover,gravity=auto/assets/photo/retreat/0m/32k/32029/p_1039379/1000_1682673845.jpg",
+    "https://bookretreats.com/cdn-cgi/image/width=1200,quality=65,f=auto,sharpen=1,fit=cover,gravity=auto/assets/photo/retreat/0m/32k/32029/p_1039379/1000_1682673845.jpg"
+  ],
+  [
+    "https://ulysse.com/news/wp-content/uploads/2024/01/Les-iles-Maldives-.jpg"
+  ],
+  [
+    "https://guidetogreenland.com/wp-content/uploads/2020/05/nuuk-the-worlds-smallest-capital-4-day-package-tour-from-iceland-to-greenland-day-Guide-to-Greenland1.jpg",
+  ],
+  [
+    "https://www.usatravel.be/web/image/product.public.category/25/main_image?unique=80270bd"
+  ],
+  [
+    "https://inspirationseek.com/wp-content/uploads/2014/11/Palawan-Island-Resort-El-Nido.jpg"
+  ],
+  [
+    "https://seychellestourism.in/wp-content/uploads/where-is-seychelles-island-located-on-world-map-europe-africa-india-1568x1045.jpg"
+  ],
+  [
+    "https://mediaim.expedia.com/destination/1/27df0f9f399aaec26a64b7a06606ca7d.jpg"
+  ],
+  [
+    "https://cf.bstatic.com/xdata/images/hotel/max1024x768/77028250.jpg?k=297ee5b16b3cfc217366615354ab23669655e27164569b61dd07892208ad6b29&o=&hp=1"
+  ],
+  [
+    "https://photos.tpn.to/ph/ok/np/tj/1600x900.jpg"
+  ]
 ]
 
 Island.all.each_with_index do |island, index|
-  file = URI.parse(photos[index % photos.length]).open # Open the URL for the image
-  island.photos.attach(io: file, filename: "island_#{index + 1}.jpg", content_type: "image/jpeg")
-  puts "Attached image to #{island.name}"
+  photos[index].each_with_index do |photo_url, photo_index|
+    file = URI.parse(photo_url).open
+    island.photos.attach(io: file, filename: "island_#{index + 1}_photo_#{photo_index + 1}.jpg", content_type: "image/jpeg")
+    puts "Attached image #{photo_index + 1} to #{island.name}"
+  end
 end
 
 puts "Attached images to all islands 🖼"
+
 
 # ------------- Bookings and reviews --------------------
 

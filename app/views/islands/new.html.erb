@@ -1,19 +1,19 @@
 <div class="container">
   <div class="row">
     <h1>Manage Your Islands</h1>
+    <!-- List of Islands -->
     <div class="col" data-controller="insert-in-list">
-      <!-- List of Islands -->
-      <% if @my_islands.any? %>
-        <div id="islands" data-insert-in-list-target="items">
+      <div id="islands" data-insert-in-list-target="items">
+        <% if @my_islands.any? %>
           <% @my_islands.each do |island| %>
             <div class="mb-4">
               <%= render "card", island: island %>
             </div>
           <% end %>
-        </div>
-      <% else %>
-        <p>You have not created any islands yet.</p>
-      <% end %>
+        <% else %>
+          <p>You have not created any islands yet.</p>
+        <% end %>
+      </div>
 
       <!-- Toggle Form for Creating a New Island -->
       <div class="mt-5" data-controller="toggle">
