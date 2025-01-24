@@ -35,31 +35,35 @@
         data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
       </div>
     </div>
-    <div class="col-lg-4 form" data-controller="toggle">
+    <div class="col-lg-4 form sticky" data-controller="toggle">
       <%= simple_form_for [@island, @booking] do |f| %>
         <div class="row">
           <div class="col-md-6">
             <%= f.input :start_date, required: true,
                                     as: :string,
-                                    input_html: { data: { controller: "datepicker" } } %>
+                                    input_html: { data: { controller: "datepicker", toggle_target: "startDate" } } %>
           </div>
           <div class="col-md-6">
             <%= f.input :end_date, required: true,
                                     as: :string,
-                                   input_html: { data: { controller: "datepicker" } } %>
+                                   input_html: { data: { controller: "datepicker", toggle_target: "endDate" } } %>
           </div>
         </div>
-        <%= f.input :guest_number, required: true %>
-        <%= f.button :submit, "Book now", class: "btn btn-primary w-100", data: { action: "click->toggle#fire" } %>
+        <%= f.input :guest_number, required: true, input_html: { data: { toggle_target: "guestNumber" } }%>
+        <%= f.button :submit, "Check availability", class: "btn btn-primary w-100", data: { action: "click->toggle#fire", toggle_target: "button" } %>
       <% end %>
       <div data-toggle-target="togglableElement" class="d-none">
         <div class="d-flex mt-3 justify-content-between">
           <p>Price</p>
-          <p><%= @island.price %></p>
+          <p data-toggle-target="price"><%= @island.price %></p>
+        </div>
+        <div class="d-flex justify-content-between">
+          <p>Nights</p>
+          <p data-toggle-target="nightAmount"></p>
         </div>
         <div class="d-flex py-3 justify-content-between border-top">
-          <p>Price</p>
-          <p><%= @island.price %></p>
+          <p><strong>Total price</strong></p>
+          <p data-toggle-target="totalPrice"></p>
         </div>
       </div>
     </div>
