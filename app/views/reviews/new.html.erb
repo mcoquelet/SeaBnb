@@ -1,6 +1,10 @@
-<h1>Add a review for your stay at <%= @booking.island.name %></h1>
-<%= simple_form_for [@booking, @review] do |f| %>
-  <%= f.input :rating, collection: 1..5, as: :radio_buttons %>
-  <%= f.input :comment, as: :text %>
-  <%= f.button :submit %>
-<% end %>
+<div class="container w-50">
+  <h1>Add a review for your stay at <%= @booking.island.name %></h1>
+  <div class="form">
+    <%= simple_form_for [@booking, @review] do |f| %>
+      <%= f.input :rating, collection: 1..5, as: :radio_buttons %>
+      <%= f.input :comment, as: :text %>
+      <%= f.button :submit, class: "btn btn-primary"%>
+    <% end %>
+  </div>
+</div>
