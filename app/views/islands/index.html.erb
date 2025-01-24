@@ -2,6 +2,14 @@
   <div class="row">
     <div class="col-lg-9">
       <div class="row row-cols-1 g-4">
+        <%= form_with url: root_path, method: :get, class: "d-flex" do %>
+          <%= text_field_tag :query,
+                params[:query],
+                class: "form-control bg-light",
+                placeholder: "Name or location"
+            %>
+          <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
+        <% end %>
         <% @islands.each do |island| %>
           <div class="col">
             <%= render 'card', island: island %>
