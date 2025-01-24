@@ -1,18 +1,21 @@
 <div class="container mb-5">
+<div class="title">
   <h1 class="my-3"><i class="fa-solid fa-umbrella-beach" style="color: #59a457;"></i> <%= @island.name %></h1>
   <p>
     <% if @island.average_rating %>
       <% @island.average_rating.floor.times do %>
-        <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+        <i class="fa-solid fa-star" style="color: #0077B6;"></i>
       <% end %>
       <% (5 - @island.average_rating.floor).times do %>
-        <i class="fa-regular fa-star" style="color: #FFD43B;"></i>
+        <i class="fa-regular fa-star" style="color: #0077B6;"></i>
       <% end %>
       <%= @island.average_rating %>/5
     <% else %>
       <%= "No ratings yet." %>
     <% end %>
   </p>
+</div>
+
   <div class="card-trip pb-3">
     <% if @island.photos.attached? %>
         <%= cl_image_tag @island.photos.first.key %>
