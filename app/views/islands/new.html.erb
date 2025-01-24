@@ -26,19 +26,18 @@
   <p>You have not created any islands yet.</p>
 <% end %>
 
-
-
-
-
-<h3>Create a New Island</h3>
-
-<%= simple_form_for(@island) do |f| %>
-  <%= f.input :name %>
-  <%= f.input :description %>
-  <%= f.input :price %>
-  <%= f.input :capacity %>
-  <%= f.input :location, input_html: {data: {location_autocomplete_target: "location"}, class: "d-none"},
-      wrapper_html: {data: {controller: "location-autocomplete", location_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}} %>
-  <%= f.input :photos, as: :file, input_html: { multiple: true } %>
-  <%= f.submit %>
-<% end %>
+<div data-controller="toggle" class="mt-5">
+  <button data-action="click->toggle#fire" class="btn btn-outline-primary">Create a new island</button>
+    <div data-toggle-target="togglableElement" class="d-none">
+    <%# <%= render "form", monument: @monument %>
+      <%= simple_form_for(@island) do |f| %>
+        <%= f.input :name %>
+        <%= f.input :description %>
+        <%= f.input :price %>
+        <%= f.input :capacity %>
+        <%= f.input :location, input_html: {data: {location_autocomplete_target: "location"}, class: "d-none"},
+            wrapper_html: {data: {controller: "location-autocomplete", location_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}} %>
+        <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+        <%= f.submit class0="Submit"%>
+      <% end %>
+</div>

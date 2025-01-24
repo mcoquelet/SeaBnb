@@ -2,13 +2,17 @@
 
   <h1 class="my-3"><i class="fa-solid fa-umbrella-beach" style="color: #59a457;"></i> <%= @island.name %></h1>
   <p>
-    <% @island.average_rating.floor.times do %>
-      <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+    <% if @island.average_rating %>
+      <% @island.average_rating.floor.times do %>
+        <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+      <% end %>
+      <% (5 - @island.average_rating.floor).times do %>
+        <i class="fa-regular fa-star" style="color: #FFD43B;"></i>
+      <% end %>
+      <%= @island.average_rating %>/5
+    <% else %>
+      <%= "No ratings yet." %>
     <% end %>
-    <% (5 - @island.average_rating.floor).times do %>
-      <i class="fa-regular fa-star" style="color: #FFD43B;"></i>
-    <% end %>
-    <%= @island.average_rating %>/5
   </p>
   <div class="row row-cols-1 row-cols-md-2 g-4">
     <div class="col">
