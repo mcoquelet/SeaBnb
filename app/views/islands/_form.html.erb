@@ -1,11 +1,19 @@
-<%= simple_form_for(@island, data: { insert_in_list_target: "form", action: "submit->insert-in-list#send" }) do |f| %>
-  <%= f.input :name, label: "Island Name", input_html: { placeholder: "Enter island name" } %>
-  <%= f.input :description, label: "Description", input_html: { placeholder: "Describe your island" } %>
-  <%= f.input :price, label: "Price per day ($)", input_html: { placeholder: "Enter price per day" } %>
-  <%= f.input :capacity, label: "Capacity", input_html: { placeholder: "Enter capacity (number of people)" } %>
-<%= f.input :location, input_html: {data: {location_autocomplete_target: "location"}, class: "d-none"},
-            wrapper_html: {data: {controller: "location-autocomplete", location_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}} %>
-  <%= f.input :photos, as: :file, label: "Photos", input_html: { multiple: true } %>
+<div class="form">
+  <%= simple_form_for(@island, data: { insert_in_list_target: "form", action: "submit->insert-in-list#send" }) do |f| %>
+    <%= f.input :name, label: "Island Name", input_html: { placeholder: "Enter island name" } %>
+    <%= f.input :description, label: "Description", input_html: { placeholder: "Describe your island" } %>
+    <div class="row">
+      <div class="col-lg-6">
+        <%= f.input :price, label: "Price per day ($)", input_html: { placeholder: "Enter price per day" } %>
+      </div>
+       <div class="col-lg-6">
+        <%= f.input :capacity, label: "Capacity", input_html: { placeholder: "Enter capacity (number of people)" } %>
+       </div>
+    </div>
+  <%= f.input :location, input_html: {data: {location_autocomplete_target: "location"}, class: "d-none"},
+              wrapper_html: {data: {controller: "location-autocomplete", location_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}} %>
+    <%= f.input :photos, as: :file, label: "Photos", input_html: { multiple: true } %>
 
-  <%= f.submit "Submit", class: "btn btn-primary" %>
-<% end %>
+    <%= f.submit "Create island", class: "btn btn-primary" %>
+  <% end %>
+</div>
