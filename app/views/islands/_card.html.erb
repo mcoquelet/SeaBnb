@@ -27,23 +27,26 @@
         <p>No ratings yet</p>
       <% end %>
     </div>
-
-
   </div>
   <div class="card-product-favorite">
     <% if current_user %>
-      <% if current_user.favorites.exists?(island: island) %>
-        <%= link_to unfavorite_island_path(island), data: { turbo_method: :delete } do %>
-          <i class="fa-solid fa-heart favorite"></i>
+      <% if params[:action] == "new" %>
+        <%= link_to island_path(island), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this island?" } do %>
+          <i class="fa-solid fa-trash"></i>
         <% end %>
       <% else %>
-        <%= link_to favorite_island_path(island), data: { turbo_method: :post } do %>
-          <i class="fa-solid fa-heart"></i>
+        <% if current_user.favorites.exists?(island: island) %>
+          <%= link_to unfavorite_island_path(island), data: { turbo_method: :delete } do %>
+            <i class="fa-solid fa-heart favorite"></i>
+          <% end %>
+        <% else %>
+          <%= link_to favorite_island_path(island), data: { turbo_method: :post } do %>
+            <i class="fa-solid fa-heart"></i>
+          <% end %>
         <% end %>
       <% end %>
     <% end %>
   </div>
-
   <div class="card-product-price text-end">
     <h3>$ <%= island.price %></h3><p> per day</p>
     <p><%= link_to "Book Now", island_path(island), class: "btn btn-primary" %></p>
